@@ -1,6 +1,7 @@
 module.exports =  {
   "type": "postgres",
   "url": process.env.HEROKU_POSTGRESQL_PURPLE_URL,
+  "ssl": {rejectUnauthorized: false },
   "entities": [
     "dist/src/entities/*.js"
   ],
