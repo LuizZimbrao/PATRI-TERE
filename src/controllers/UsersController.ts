@@ -34,6 +34,10 @@ class UsersController {
       res.status(400).json(user);
     }
 
+    if (user["error"]) {
+      return res.status(400).json(user);
+    }
+
     return res.json(user);
   }
 
@@ -44,6 +48,10 @@ class UsersController {
 
     if (!login.token) {
       return res.status(401).json(login);
+    }
+
+    if (login["error"]) {
+      return res.status(400).json(login);
     }
 
     return res.json(login);
