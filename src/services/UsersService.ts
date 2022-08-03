@@ -45,6 +45,10 @@ class UsersService {
   }
 
   async create({ email, password, name }: ICreateUsers) {
+    const usersRepository = getCustomRepository(UsersRepository);
+
+    const userExists = await usersRepository.findOne({ where: { email } });
+
     if (!email) {
       return { error: 'O campo e-mail é obrigatório' };
     }
@@ -56,10 +60,6 @@ class UsersService {
     if (!name) {
       return { error: 'O campo nome é obrigatório' };
     }
-
-    const usersRepository = getCustomRepository(UsersRepository);
-
-    const userExists = await usersRepository.findOne({ where: { email } });
 
     if (userExists) {
       return { error: 'E-mail já está em uso' };
