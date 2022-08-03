@@ -5,7 +5,7 @@ import { NextFunction, Request, Response } from 'express';
 export default function authMiddleware(
   req: Request, res: Response, next: NextFunction,
 ) {
-  const { authorization } = req.headers;
+  const { authorization } = req?.headers;
 
   if (!authorization) {
     return res.sendStatus(401);
