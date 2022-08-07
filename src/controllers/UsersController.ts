@@ -24,11 +24,11 @@ class UsersController {
   async store(req: Request, res: Response) {
     const { email, password, name } = req.body;
 
-    const user = await UsersService.create({
+    const user = (await UsersService.create({
       email,
       password,
       name,
-    }) as unknown as IUser;
+    })) as unknown as IUser;
 
     if (!user.id) {
       res.status(400).json(user);
@@ -44,7 +44,10 @@ class UsersController {
   async login(req: Request, res: Response) {
     const { email, password } = req.body;
 
-    const login = await UsersService.authenticate(email, password) as unknown as ILogin;
+    const login = (await UsersService.authenticate(
+      email,
+      password
+    )) as unknown as ILogin;
 
     if (!login.token) {
       return res.status(401).json(login);

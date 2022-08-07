@@ -1,4 +1,10 @@
-import { BeforeInsert, BeforeUpdate, Column, Entity, PrimaryColumn } from "typeorm";
+import {
+  BeforeInsert,
+  BeforeUpdate,
+  Column,
+  Entity,
+  PrimaryColumn,
+} from "typeorm";
 
 import bcrypt from "bcryptjs";
 
@@ -33,7 +39,7 @@ class User {
     }
 
     if (!this.admin) {
-      this.admin = false
+      this.admin = false;
     }
   }
 }
